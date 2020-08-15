@@ -41,9 +41,9 @@ const templateWithJQuery = () => {
   starWarsPeople.forEach(potato => {
 
     const template = $('#template').clone();
-    template.find($('h2').text(potato[0].name));
-    template.find($('h3').text(potato[1].height));
-    template.find($('p').text(potato[2].eye_color));
+    template.find('h2').text(potato.name);
+    template.find('h3').text(potato.height);
+    template.find('p').text(potato.eye_color);
     $('main').append(template);
 
   });
@@ -65,15 +65,9 @@ For example, if the input is 'Welcome', the output will be:
 const howMuchPencil = (str) => {
   let result = [];
   // Solution code here...
- 
-  str.forEach( function (index) {
-    if (index < str.length++) {
-      
-      result.push(str.slice(index));
-
-    }
-    
-  })
+  for(let i = 0; i < str.length + 1;i ++) {
+    result.push(str.slice(i));
+  }
   return result;
 };
 
@@ -135,13 +129,17 @@ const gruffaloCrumble = {
 const listFoods = (recipe) => {
   let result = [];
   // Solution code here...
-  recipe.forEach(foodItems => {
-
-  const parts = recipe.splice(0, until);
-  str.indexOf('ingredient', 'steps');
-  });
-  //string.indexOf(searchvalue, start)
-  return result;
+  recipe.ingredients.forEach (str => {
+    // indexOfSpace finds first space in string
+    let indexOfSpace = str.indexOf(' '); 
+    str = str.slice(indexOfSpace + 1); // we find the index and slice it to remove indexes before the space
+    indexOfSpace = str.indexOf(' ');
+    str = str.slice(indexOfSpace + 1)
+  // we slice the same string everytime because of loop and so it will slice until there are no spaces
+  // we then push what is left (only one word) into new array
+    result.push(str);
+  }) 
+   return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -290,7 +288,7 @@ describe('Testing challenge 3', () => {
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should return a list of foods', () => {
     expect(listFoods(gruffaloCrumble)).toStrictEqual(['Gruffalo', 'oats', 'brown sugar', 'flour', 'pure maple syrup', 'chopped nuts', 'baking soda', 'baking powder', 'cinnamon', 'melted butter', 'fresh water']);
     expect(listFoods(gruffaloCrumble).length).toStrictEqual(11);
