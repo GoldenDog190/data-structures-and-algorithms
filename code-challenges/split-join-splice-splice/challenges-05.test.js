@@ -41,6 +41,7 @@ const templateWithJQuery = () => {
   starWarsPeople.forEach(potato => {
 
     const template = $('#template').clone();
+    template.attr('id','');
     template.find('h2').text(potato.name);
     template.find('h3').text(potato.height);
     template.find('p').text(potato.eye_color);
