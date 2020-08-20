@@ -268,6 +268,7 @@ Note: You must use reduce for this challenge. You may not use the built-in .reve
 ////https://dev.to/navi/comment/45bn 
 const reversedString = (str) => {
   // Solution code here...
+  //console.log(str);
 const arr = str.split('');
 return arr.reduce((accumulator, value) => value + accumulator, '');
 };
