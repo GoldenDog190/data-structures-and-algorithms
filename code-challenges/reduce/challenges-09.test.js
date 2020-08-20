@@ -27,6 +27,7 @@ const createServer = () => {
 
   // Routes go here
   // Solution code here...
+  app.get('/events', getCurrentEvents);
 
   var server = app.listen(3301, function () {
     var port = server.address().port;
@@ -161,14 +162,22 @@ const currentEvents = {
 
 function getCurrentEvents(request, response){
   // Solution code here...
+response.send(mapCurrentEvents());
 }
 
 const mapCurrentEvents = () => {
   // Solution code here...
+ return currentEvents.news.map(newsObj => new Event(newsObj));
 }
 
 function Event(obj){
   // Solution code here...
+this.author = obj.author;
+this.categories = obj.category;
+this.summary = obj.description;
+this.img_url = obj.url;
+this.date = obj.published.split('')[0];
+this.title = obj.title;
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -178,9 +187,11 @@ Write a function named countNumberOfElements that, given an array as input, uses
 
 Note: You may not use the array's built-in length property.
 ------------------------------------------------------------------------------------------------ */
-
+// looked at these examples: https://gist.github.com/quangnd/572c6d410cb6512b7f252af0f2eb7cae
 const countNumberOfElements = (arr) => {
   // Solution code here...
+  return arr.reduce((number) => number+1, 0)
+  
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -241,6 +252,10 @@ let starWarsData = [{
 
 const returnNames = (arr) => {
   // Solution code here...
+ return arr.reduce((accumulator, character) => {
+   accumulator.push(character.name)
+   return accumulator;
+ }, []);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -250,9 +265,11 @@ Write a function named reversedString that takes in a string and returns a strin
 
 Note: You must use reduce for this challenge. You may not use the built-in .reverse() string method.
 ------------------------------------------------------------------------------------------------ */
-
+////https://dev.to/navi/comment/45bn 
 const reversedString = (str) => {
   // Solution code here...
+const arr = str.split('');
+return arr.reduce((accumulator, value) => value + accumulator, '');
 };
 
 /* ------------------------------------------------------------------------------------------------
