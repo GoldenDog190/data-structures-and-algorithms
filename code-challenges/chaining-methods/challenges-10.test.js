@@ -1,5 +1,7 @@
 'use strict';
 
+const { response } = require('express');
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1 - Review
 
@@ -8,16 +10,28 @@ Build a simple express server. Connect a '/hello' route that sends a greeting of
 
 const createServer = () => {
   // Solution code here...
-  app.get('/hello', function () {
-    request.send('Hello');
-  });
-  //app.get('/aboutme', function () {
-    //request.send();
-  //})
-  //app.get('/favoritefoods');
+  const express = require('express');
+  const app = express();
+
   var server = app.listen(3301, function () {
     var port = server.address().port;
     console.log('Example app listening at port', port);
+   function hello (req, res){
+     res.send('Hello');
+   }
+
+   function about (req, res){
+    res.send('about me');
+  }
+
+  function food (req, res){
+    let arrFood = ['food1','food2', 'food3'];
+    res.send(arrFood);
+
+  }
+   app.get('/hello', hello);
+   app.get('/aboutme', about);
+   app.get('/favoritefoods', food);
   });
   return server;
 };
@@ -35,9 +49,15 @@ For example, count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]]) returns 4.
 const count = (target, input) => {
   // Solution code here...
     
-  const arr = eachArr.filter(val => target === val); 
-  return accum + arr.length;
-}, 0);
+  let instanceCount = 0;
+  input.map(searchArr => {
+    searchArr.map(element => {
+      if (element === target){
+        instanceCount++;
+      }
+    });
+  })
+  return instanceCount;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -71,9 +91,15 @@ For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 
 const divisibleByFiveTwoToThePower = (input) => {
   // Solution code here...
-return input.map(arr => arr.filter (numDiv => numDiv % 5 === 0).map(power => Math.pow(2, power)));
+return (input.map(arr => arr.filter (numDiv => { numDiv
+  if(typeof numDiv === 'number') { 
+   return numDiv % 5 === 0;
+} else {
 
+  return false;
+}
 
+}).map(power => Math.pow(2, power))));
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5 - Stetch Goal
