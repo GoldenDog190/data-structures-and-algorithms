@@ -1,4 +1,3 @@
-![6E5C794E-8393-4F39-86A0-1B4FF5E99935](https://user-images.githubusercontent.com/65562053/112089091-38b49200-8b4e-11eb-9cc9-bed5b26b1973.jpeg)
 # data-structures-and-algorithms
 
 **Code Challenges Directory - contains code challenges from 301**
